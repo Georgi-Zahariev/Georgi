@@ -1,0 +1,123 @@
+import java.awt.Color;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JScrollBar;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.Canvas;
+
+public class zad3scroll {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					zad3scroll window = new zad3scroll();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public zad3scroll() {
+		initialize();
+	}
+	private static int R = 0;
+	private static int G = 0;
+	private static int B = 0;
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 650, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		
+		
+		JLabel red = new JLabel("RED");
+		red.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		red.setBounds(20, 239, 112, 38);
+		frame.getContentPane().add(red);
+		
+		JLabel green = new JLabel("GREEN");
+		green.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		green.setBounds(10, 318, 122, 14);
+		frame.getContentPane().add(green);
+		
+		JLabel blue = new JLabel("BLUE");
+		blue.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		blue.setBounds(10, 373, 122, 14);
+		frame.getContentPane().add(blue);
+		
+		JLabel lbl2 = new JLabel("");
+		lbl2.setBounds(113, 131, 337, 56);
+		frame.getContentPane().add(lbl2);
+		lbl2.setOpaque(true);
+		lbl2.setBackground(Color.black);
+		
+		
+		
+		JScrollBar RedscrollBar = new JScrollBar();
+		RedscrollBar.addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				R = RedscrollBar.getValue();
+				lbl2.setBackground(new java.awt.Color(R, G, B));
+				lbl2.repaint();
+				red.setText("RED " + R);
+			}
+		});
+		RedscrollBar.setBounds(171, 239, 304, 38);
+		RedscrollBar.setOrientation(JScrollBar.HORIZONTAL);
+		RedscrollBar.setMaximum(255);
+		frame.getContentPane().add(RedscrollBar);
+		
+		JScrollBar GreenscrollBar = new JScrollBar();
+		GreenscrollBar.addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				G = GreenscrollBar.getValue();
+				lbl2.setBackground(new java.awt.Color(R, G, B));
+				lbl2.repaint();
+				green.setText("GREEN " + G);
+			}
+		});
+		GreenscrollBar.setBounds(171, 303, 304, 48);
+		GreenscrollBar.setOrientation(JScrollBar.HORIZONTAL);
+		GreenscrollBar.setMaximum(255);
+		frame.getContentPane().add(GreenscrollBar);
+		
+		JScrollBar BluescrollBar = new JScrollBar();
+		BluescrollBar.addAdjustmentListener(new AdjustmentListener() {
+			public void adjustmentValueChanged(AdjustmentEvent arg0) {
+				B = BluescrollBar.getValue();
+				blue.setText("BLUE " + B);
+				lbl2.setBackground(new java.awt.Color(R, G, B));
+				lbl2.repaint();	
+			}
+		});
+		BluescrollBar.setBounds(171, 362, 304, 48);
+		BluescrollBar.setOrientation(JScrollBar.HORIZONTAL);
+		BluescrollBar.setMaximum(255);
+		frame.getContentPane().add(BluescrollBar);
+		
+		
+		
+		
+		
+		
+	}
+}
